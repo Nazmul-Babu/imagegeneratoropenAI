@@ -30,14 +30,18 @@ class ApiController extends Controller
             default:
                 $size='256x256';
         }
-        $client=OpenAI::client(env('Open_AI_Key'));
-        $response=$client->images()->create([
+        $client=OpenAI::client(env('OPENAI_API_KEY'));
+        $response=$client->completions()->create([
+            'model' => 'text-davinci-003',
             'prompt' => $text,
-             'n' => 1,
-            'size' => $size,
-            'response_format' => 'url',
+            "temperature" => 0.7,
+            "max_tokens" => 256,
+            "top_p"=> 1,
+            "frequency_penalty"=> 0,
+            "presence_penalty"=> 0,
+
            ]);
-           $url=$response->toArray()['data']['0']['url'];
+           $url=$response['choices'][0]['text'];
            return view('show',compact(['url','text']));
     }
 }

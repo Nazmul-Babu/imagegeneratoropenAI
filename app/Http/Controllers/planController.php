@@ -9,6 +9,7 @@ use App\Models\User;
 use Laravel\Cashier\Billable;
 
 
+
 class planController extends Controller
 {
     public function index()
@@ -23,7 +24,7 @@ class planController extends Controller
     public function subscription(Request $request){
        $plan=plan::find($request->plan);
 
-       $subscription=$request->user()->newsubscription($request->plan,$plan->stripe_plan)->create($request->token);
+       $subscription=$request->user()->newsubscription($request->plan, $plan->stripe_plan)->create($request->token);
 
        return view('subscription_success');
     }

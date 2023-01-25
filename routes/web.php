@@ -34,8 +34,9 @@ Route::middleware("auth")->group(function(){
    Route::get('plans',[planController::class,'index'])->name('plan');
    Route::get('plans/{plan}',[planController::class,'show'])->name('plan.show');
    Route::post('subscription',[planController::class,'subscription'])->name('subs.create');
-});
+   Route::get('plans',[planController::class,'index'])->name('plan');
 
+});
 
 
 

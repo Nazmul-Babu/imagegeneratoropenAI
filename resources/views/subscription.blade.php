@@ -11,7 +11,7 @@
                         <input type="hidden" name="plan" id="plan" value="{{ $plan->id}}">
                         <input type="text" name="name" id="card-holder-name" value="" placeholder="card-holder-name">
                         <div class="row">
-                            <div class="col-xl-4 col-lg-4">
+                            <div class="col-xl-8 col-lg-8">
                                 <div class="form-control">
                                     <label for="">card details</label>
 
@@ -38,7 +38,7 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    const stripe=stripe('{{ env('STRIPE_KEY') }}')
+    const stripe=Stripe('{{ env('STRIPE_KEY') }}')
     const elements =stripe.elements()
     const cardElement=elements.create('card')
     cardElement.mount('#card-element')
